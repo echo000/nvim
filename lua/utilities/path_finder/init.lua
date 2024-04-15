@@ -18,7 +18,7 @@ local function init_path_values(path)
         dotnet_last_dll_path = static_values.dotnet_last_dll_path
         dotnet_debug_cwd = static_values.dotnet_debug_cwd
         project_found = true
-        vim.notify("Found project in config. Project file path is " .. dotnet_last_proj_path)
+        --vim.notify("Found project in config. Project file path is " .. dotnet_last_proj_path)
     else
         -- Don't overwrite last_proj_path and last_dll_path
         project_found = false
@@ -40,6 +40,14 @@ end
 function M.GetDllPath()
     if vim.fn.confirm("Should I recompile first?", "&yes\n&no", 2) == 1 then
         dotnet_last_proj_path = utils.dotnet_build_project(dotnet_last_proj_path, get_proj_config_for_cwd())
+    end
+    dotnet_last_dll_path = utils.dotnet_get_dll_path(dotnet_last_dll_path, project_found)
+    return dotnet_last_dll_path
+end
+
+function M.GetDllPath2()
+    if vim.fn.confirm("Should I recompile first?", "&yes\n&no", 2) == 1 then
+        dotnet_last_proj_path = utils.msbuild_project(dotnet_last_proj_path, get_proj_config_for_cwd())
     end
     dotnet_last_dll_path = utils.dotnet_get_dll_path(dotnet_last_dll_path, project_found)
     return dotnet_last_dll_path

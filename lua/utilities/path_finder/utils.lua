@@ -75,7 +75,7 @@ function M.dotnet_build_project(last_path, config)
             result = config.dotnet_last_proj_path
         else
             -- If the project was not found, always ask for it, but fill in the last path
-            result = vim.fn.input("Path to your *proj file", default_path, "file")
+            result = vim.fn.input("Path to your proj/sln file", default_path, "file")
         end
 
         local cmd = "dotnet build -c Debug " .. result
@@ -92,7 +92,7 @@ function M.dotnet_build_project(last_path, config)
     return result
 end
 
-function M.msbuild_project(last_path, config)
+function M.msbuild_project(last_path, config, debug)
     local default_path = vim.fn.getcwd() .. "/"
     if last_path ~= nil then
         default_path = last_path
@@ -105,10 +105,10 @@ function M.msbuild_project(last_path, config)
             result = config.dotnet_last_proj_path
         else
             -- If the project was not found, always ask for it, but fill in the last path
-            result = vim.fn.input("Path to your *proj file", default_path, "file")
+            result = vim.fn.input("Path to your proj/sln file", default_path, "file")
         end
 
-        local cmd = "msbuild " .. result
+        local cmd = "msbuild " .. result .. " /property:Configuration=Debug"
         print("")
         vim.notify("Cmd to execute: " .. cmd)
         -- TODO: This should be done in async way
