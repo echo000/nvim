@@ -10,9 +10,17 @@ require("utilities.path_finder").setup({
             dotnet_dll_path = "C:/Dev/Saluki/src/Saluki/bin/x64/Debug/net7.0-windows/Saluki.dll",
             dotnet_debug_cwd = "C:/Dev/Saluki/src", -- Useful for large, multi-project debugging
         },
+        {
+            base_path = "C:/Dev/Voxel",
+            dotnet_proj_file = "C:/Dev/Voxel/Voxel.sln",
+            dotnet_dll_path = "C:/Dev/voxel/bin/Debug-windows-x86_64/Sandbox/Voxel-Sandbox.exe",
+            dotnet_debug_cwd = "C:/Dev/Voxel/Voxel/src", -- Useful for large, multi-project debugging
+        },
     },
 })
 
 vim.g.copilot_assume_mapped = true
 
 vim.g.undotree_DiffCommand = "FC"
+vim.opt.tabstop = 4
+vim.opt.shiftwidth = 4

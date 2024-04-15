@@ -92,4 +92,34 @@ function M.dotnet_build_project(last_path, config)
     return result
 end
 
+function M.msbuild_project(last_path, config)
+    local default_path = vim.fn.getcwd() .. "/"
+    if last_path ~= nil then
+        default_path = last_path
+    end
+    local result = nil
+    vim.schedule(function()
+        -- If project was found in config, use it
+        if config.dotnet_last_proj_path ~= nil then
+            -- print("Found project in config. Project file path is " .. config.dotnet_last_proj_path)
+            result = config.dotnet_last_proj_path
+        else
+            -- If the project was not found, always ask for it, but fill in the last path
+            result = vim.fn.input("Path to your *proj file", default_path, "file")
+        end
+
+        local cmd = "msbuild " .. result
+        print("")
+        vim.notify("Cmd to execute: " .. cmd)
+        -- TODO: This should be done in async way
+        local f = os.execute(cmd)
+        if f == 0 then
+            vim.notify("\nBuild: ✔️ ")
+        else
+            vim.notify("\nBuild: ❌ (code: " .. f .. ")")
+        end
+    end)
+    return result
+end
+
 return M
