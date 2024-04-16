@@ -44,6 +44,24 @@ return {
         event = "VeryLazy",
     },
     {
+        "echasnovski/mini.comment",
+        event = "VeryLazy",
+        requires = { "nvim-treesitter/nvim-treesitter" },
+        opts = {
+            options = {
+                custom_commentstring = function()
+                    return require("ts_context_commentstring.internal").calculate_commentstring()
+                        or vim.bo.commentstring
+                end,
+            },
+        },
+    },
+    {
+        "JoosepAlviste/nvim-ts-context-commentstring",
+
+        opts = { languages = { cpp = { __default = "// %s", __multiline = "/* %s */" } } },
+    },
+    {
         "mbbill/undotree",
         lazy = false,
         init = function()
