@@ -46,10 +46,15 @@ function M.GetDllPath()
 end
 
 function M.GetDllPath2()
-    if vim.fn.confirm("Should I recompile first?", "&yes\n&no", 2) == 1 then
-        dotnet_last_proj_path = utils.msbuild_project(dotnet_last_proj_path, get_proj_config_for_cwd())
-    end
+    local debug = vim.fn.confirm("Build as debug?", "&yes\n&no", 2)
+    dotnet_last_proj_path = utils.msbuild_project(dotnet_last_proj_path, get_proj_config_for_cwd(), debug)
     dotnet_last_dll_path = utils.dotnet_get_dll_path(dotnet_last_dll_path, project_found)
+    if debug == 1 then
+        dotnet_last_dll_path = dotnet_last_dll_path:gsub("Release", "Debug")
+    else
+        dotnet_last_dll_path = dotnet_last_dll_path:gsub("Debug", "Release")
+    end
+
     return dotnet_last_dll_path
 end
 

@@ -200,6 +200,10 @@ return {
                 return
             end
 
+            local mason_registry = require("mason-registry")
+            local codelldb_root = mason_registry.get_package("codelldb"):get_install_path()
+                .. "/extension/adapter/codelldb"
+
             -- used by nvim-dap
             dap.adapters.coreclr = {
                 type = "executable",
@@ -213,10 +217,9 @@ return {
 
             dap.adapters.codelldb = {
                 type = "server",
-                host = "localhost",
                 port = "${port}",
                 executable = {
-                    command = "codelldb",
+                    command = codelldb_root,
                     args = {
                         "--port",
                         "${port}",
@@ -226,7 +229,7 @@ return {
             }
 
             -- Neotest Test runner looks at this table
-            dap.adapters.netcoredbg = vim.deepcopy(dap.adapters.coreclr)
+            dap.adapters.netcoredbg = dap.adapters.coreclr
 
             -- useful for debugging issues with dap
             -- Logs are written to :lua print(vim.fn.stdpath('cache'))
@@ -246,7 +249,7 @@ return {
 
             dap.configurations.cpp = {
                 {
-                    name = "Launch File",
+                    name = "Launch - C++",
                     type = "codelldb",
                     request = "launch",
                     program = dotnet_ph.GetDllPath2,
@@ -254,9 +257,6 @@ return {
                     console = "integratedTerminal",
                 },
             }
-
-            dap.configurations.c = dap.configurations.cpp
-            -- require("core.utils").load_mappings("dap")
         end,
     },
 }

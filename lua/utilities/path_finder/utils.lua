@@ -108,7 +108,14 @@ function M.msbuild_project(last_path, config, debug)
             result = vim.fn.input("Path to your proj/sln file", default_path, "file")
         end
 
-        local cmd = "msbuild " .. result .. " /property:Configuration=Debug"
+        local build_config = "Debug"
+        if debug == 1 then
+            build_config = "Debug"
+        else
+            build_config = "Release"
+        end
+
+        local cmd = "devenv " .. result .. " /Build " .. build_config
         print("")
         vim.notify("Cmd to execute: " .. cmd)
         -- TODO: This should be done in async way

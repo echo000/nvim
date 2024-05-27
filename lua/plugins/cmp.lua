@@ -17,6 +17,9 @@ return {
                 end)
             end,
         },
+        {
+            "L3MON4D3/LuaSnip",
+        },
     },
     ---@param opts cmp.ConfigSchema
     opts = function(_, opts)

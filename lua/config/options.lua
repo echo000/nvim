@@ -14,7 +14,7 @@ require("utilities.path_finder").setup({
             base_path = "C:/Dev/voxel",
             dotnet_proj_file = "C:/Dev/voxel/Voxel.sln",
             dotnet_dll_path = "C:/Dev/voxel/bin/Debug-windows-x86_64/Sandbox/Voxel-Sandbox.exe",
-            dotnet_debug_cwd = "C:/Dev/voxel/bin/Debug-windows-x86_64/Sandbox", -- Useful for large, multi-project debugging
+            dotnet_debug_cwd = "C:/Dev/voxel/Sandbox", -- Useful for large, multi-project debugging
         },
     },
 })
