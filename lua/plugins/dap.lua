@@ -162,8 +162,8 @@ return {
                 "folke/which-key.nvim",
                 optional = true,
                 opts = {
-                    defaults = {
-                        ["<leader>d"] = { name = "+debug" },
+                    spec = {
+                        { "<leader>d", group = "debug" },
                     },
                 },
             },
@@ -203,11 +203,13 @@ return {
             local mason_registry = require("mason-registry")
             local codelldb_root = mason_registry.get_package("codelldb"):get_install_path()
                 .. "/extension/adapter/codelldb"
+            local netcoredbg_root = mason_registry.get_package("netcoredbg"):get_install_path()
+                .. "/netcoredbg/netcoredbg"
 
             -- used by nvim-dap
             dap.adapters.coreclr = {
                 type = "executable",
-                command = vim.fs.normalize(vim.fn.stdpath("data") .. "/netcoredbg/netcoredbg.exe"),
+                command = netcoredbg_root,
                 args = { "--interpreter=vscode" },
                 options = {
                     detached = false, -- Will put the output in the REPL. #CloseEnough
