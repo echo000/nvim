@@ -9,4 +9,3 @@ vim.keymap.set("n", "N", "Nzzzv")
 
 --When something is highligted and paste over, this does not overwrite the clipboard
 vim.keymap.set("x", "<leader>p", [["_dP]])
---vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
