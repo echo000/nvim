@@ -1,6 +1,6 @@
 return {
     -- disable dashboard
-    { "nvimdev/dashboard-nvim", enabled = false },
+    { "folke/snacks.nvim", opts = { dashboard = { enabled = false } } },
     {
         "williamboman/mason.nvim",
         opts = {
@@ -8,6 +8,7 @@ return {
                 "clangd",
                 "clang-format",
                 "codelldb",
+                "zls",
             },
         },
     },
@@ -19,7 +20,16 @@ return {
         end,
     },
     {
+        "folke/which-key.nvim",
+        opts = {
+            preset = "classic",
+        },
+    },
+    {
         "tikhomirov/vim-glsl",
+    },
+    {
+        "ziglang/zig.vim",
     },
     {
         "iabdelkareem/csharp.nvim",
