@@ -1,6 +1,7 @@
 return {
     "mrcjkb/rustaceanvim",
-    version = "^5", -- Recommended
+    version = "^6", -- Recommended
+    lazy = false, -- This plugin is already lazy
     ft = { "rust" },
     opts = {
         server = {
@@ -11,6 +12,9 @@ return {
                 vim.keymap.set("n", "<leader>dr", function()
                     vim.cmd.RustLsp("debuggables")
                 end, { desc = "Rust Debuggables", buffer = bufnr })
+                vim.keymap.set("n", "K", function()
+                    vim.cmd.RustLsp({ "hover", "actions" })
+                end, { silent = true, buffer = bufnr })
             end,
             default_settings = {
                 -- rust-analyzer language server configuration
