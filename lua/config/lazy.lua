@@ -23,6 +23,7 @@ require("lazy").setup({
         { import = "lazyvim.plugins.extras.editor.telescope" },
         { import = "lazyvim.plugins.extras.coding.nvim-cmp" },
         { import = "lazyvim.plugins.extras.dap.core" },
+        { import = "lazyvim.plugins.extras.editor.harpoon2" },
         --{ import = "lazyvim.plugins.extras.ai.copilot" },
         --{ import = "lazyvim.plugins.extras.ai.copilot-chat" },
         -- import/override with your plugins
