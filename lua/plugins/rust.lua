@@ -26,6 +26,19 @@ return {
                             enable = true,
                         },
                     },
+                    workspace = {
+                        symbol = {
+                            search = {
+                                -- Controls which symbols are shown in `workspace_symbol`
+                                kind = "all_symbols", -- "all_symbols" | "only_types" | "only_functions"
+                                limit = 512, -- How many results to return
+                                query = nil, -- Optional pre-filter
+                                -- Optional fuzzy config (requires latest RA)
+                                -- caseSensitive = false,
+                                -- subString = true,
+                            },
+                        },
+                    },
                     -- Add clippy lints for Rust.
                     checkOnSave = true,
                     procMacro = {
